@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="AnandJagtap" constructor="IdleSessionGuard" version="1.0.0" display-name-key="Idle Session Guard" description-key="Detects user inactivity in canvas apps and warns before timing out" control-type="standard">
+    <external-service-usage enabled="false">
+    </external-service-usage>
+
+    <!-- Settings -->
+    <property name="TimeoutMinutes" display-name-key="Timeout (minutes)" description-key="Minutes of inactivity before the session becomes Idle" of-type="Decimal" usage="input" required="false" default-value="15" />
+    <property name="WarningSeconds" display-name-key="Warning (seconds)" description-key="How many seconds before the timeout the warning starts" of-type="Whole.None" usage="input" required="false" default-value="60" />
+    <property name="Enabled" display-name-key="Enabled" description-key="Turn the guard on or off" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="ShowDialog" display-name-key="Show dialog" description-key="Show the built-in warning dialog" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="ResetKey" display-name-key="Reset key" description-key="Change this value to start a fresh session (e.g. after sign-in)" of-type="SingleLine.Text" usage="input" required="false" />
+
+    <!-- Dialog text and color -->
+    <property name="DialogTitle" display-name-key="Dialog title" description-key="Warning dialog heading" of-type="SingleLine.Text" usage="input" required="false" default-value="Are you still there?" />
+    <property name="DialogMessage" display-name-key="Dialog message" description-key="Warning dialog text" of-type="SingleLine.Text" usage="input" required="false" default-value="For your security, you'll be signed out soon." />
+    <property name="StayButtonText" display-name-key="Stay button text" description-key="Text on the dialog button" of-type="SingleLine.Text" usage="input" required="false" default-value="I'm still here" />
+    <property name="AccentColor" display-name-key="Accent color" description-key="Color of the countdown ring and button" of-type="SingleLine.Text" usage="input" required="false" default-value="#0F6CBD" />
+
+    <!-- Outputs the app can read -->
+    <property name="Status" display-name-key="Status" description-key="Active, Warning or Idle" of-type="SingleLine.Text" usage="bound" required="false" />
+    <property name="SecondsRemaining" display-name-key="Seconds remaining" description-key="Countdown during the warning; 0 otherwise" of-type="Whole.None" usage="bound" required="false" />
+
+    <resources>
+      <code path="index.ts" order="1" />
+      <css path="css/IdleSessionGuard.css" order="1" />
+    </resources>
+  </control>
+</manifest>

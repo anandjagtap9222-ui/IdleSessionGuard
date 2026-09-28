@@ -1,0 +1,79 @@
+/* Warning dialog. All classes start with "isg-" to avoid clashes. */
+
+.isg-overlay {
+    --isg-accent: #0F6CBD;
+    position: fixed;
+    inset: 0;
+    z-index: 2147483000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    font-family: "Segoe UI", sans-serif;
+}
+.isg-overlay.isg-open {
+    display: flex;
+    animation: isg-fade 0.25s ease;
+}
+
+.isg-card {
+    width: min(360px, 90vw);
+    box-sizing: border-box;
+    padding: 28px 28px 24px;
+    border-radius: 16px;
+    background: #ffffff;
+    color: #242424;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: isg-pop 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Countdown ring */
+.isg-ring { position: relative; width: 96px; height: 96px; margin: 0 auto 16px; }
+.isg-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.isg-track { fill: none; stroke: #e6e6e6; stroke-width: 8; }
+.isg-progress {
+    fill: none;
+    stroke: var(--isg-accent);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 276.46;
+    transition: stroke-dashoffset 1s linear;
+}
+.isg-count {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.isg-title { margin: 0 0 8px; font-size: 20px; font-weight: 600; }
+.isg-message { margin: 0 0 22px; font-size: 14px; line-height: 1.5; color: #616161; }
+
+.isg-stay {
+    width: 100%;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--isg-accent);
+    color: #ffffff;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+.isg-stay:hover { filter: brightness(1.1); }
+.isg-stay:focus-visible { outline: 3px solid #000000; outline-offset: 2px; }
+
+@keyframes isg-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes isg-pop  { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .isg-overlay.isg-open, .isg-card { animation: none; }
+    .isg-progress { transition: none; }
+}
